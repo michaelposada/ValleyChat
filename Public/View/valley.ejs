@@ -1,0 +1,302 @@
+<html lang="en"> 
+
+    <title>Valley</title>
+        <head>
+            	<link rel="stylesheet" type="text/css" href="/stylesheet.css">
+		<link rel="shortcut icon" href="valleyicon.ico">
+            	<link href="https://fonts.googleapis.com/css?family=Biryani:800" rel="stylesheet">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://cdnjs.com/libraries/postgrest-client"></script>
+        	<meta charset="UTF-8">
+	</head>
+	<body>		
+        	<div id="stage">
+	                <div id="top">
+        	            <img src="/valley1.png" class="valleywordlogo">
+                	    	<div id="test" class="user">
+					<img src="/user.png" class="user">
+					<div id="tooltiptext" class="tooltip">
+					<a href="http://valleychat.profleune.net/">Logout</a>
+					</div>
+				</div>
+               		 </div>
+
+	                <div id="left" class="left" activechatid="null" isgroupchat="no"> 
+        	       		
+               			<div id="friendlabel" class="label">
+					<label class="leftlabel">FRIENDS</label>
+					<img src="/add.png" class="add" id="addfriend">
+				</div>
+				<div id="friends" class="leftscroll"></div>
+				
+				<div id="gclabel" class="label">
+					<label class="leftlabel">GROUP CHATS</label>
+					<img src="/add.png" class="add" id="addgroupchat">
+					<img src="/add.png" class="add" id="gcPermissionTestButton">
+				</div>
+				<div id="groupchats" class="leftscroll"></div>
+			
+        		        <div id="myDropdown" class="dropdown-content"></div>
+                	</div>
+
+			<div id="right" class="nochat">
+				<div id="chat-window">
+                		<div id="output" class="rightscroll"></div>
+                		<div id="feedback"></div>
+             			</div>
+
+		 		<h1 id="handle" myid="insert your hashed id here"></h1>
+				<script>
+				var id = window.location.search.substring(1);
+				var varibles = id.split("&");
+				for(var i = 0; i < varibles.length;i++)
+				{
+					var pair = varibles[i].split("=");
+					if(pair[0] == "id")
+					{
+						document.getElementById("handle").setAttribute("myid",(pair[1].toString()));
+						//document.getElementById("handle").setArrtibute("myid", "big chungus");
+					}
+				}
+				</script>
+<!-- The Friend Modal -->
+<div id="friendModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span id="friendClose" class="close">&times;</span>
+      <h4>Add a friend</h4>
+    </div>
+    <div class="modal-body leftscroll">
+    <p id="modaloutput" class="modal-output"> </p>
+    <input type="button" class="modalsubmit" id ="submitusername" value="Send Request">
+    <div style="overflow: hidden; padding-right: .5em;">
+        <input type="text" class="modalinput" id="username" placeholder="Enter a username...">
+        </div><br>
+  <div id="friendRequestList">
+        <label class="requestlabel">Pending Friend Requests</label>
+        <br><label id="friendRequestListLabel" class="nofriends">Looks like no one new wants to be your friend right now. :(
+        <br><br></div>
+    </div>
+  </div>
+
+</div>
+
+        <!-- The GroupChat Modal -->
+<div id="groupChatModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span id="groupChatClose" class="close">&times;</span>
+      <h4>Create a group chat</h4>
+    </div>
+    <div class="modal-body leftscroll">
+    <p id="groupchatmodaloutput" class="modal-output"> </p>
+    <input type="button" class="modalsubmit" id ="addtogroupchat" value="Create Chat">
+    <div style="overflow: hidden; padding-right: .5em;">
+    <input type="text" class="modalinput" id="usernamegroupchat" placeholder="Enter the group chat name...">
+       </div><br>
+  <div id="groupChatList" numgcinvites="0">
+	<label class="requestlabel">Pending Group Chat Requests</label>
+        <br><label id="groupChatListLabel" class="nofriends">Looks like no one new wants you in their group chat. :(</label>
+        <br><br></div>
+    </div>
+  </div>
+</div>
+
+
+
+        <!-- The GroupChat Inviter Modal -->
+<div id="groupChatInviterModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span id="groupChatInviterClose" class="close">&times;</span>
+      <h4>Invite User</h4>
+    </div>
+    <div class="modal-body">
+    <p id="gcinviteoutput" class="modal-output"> </p>
+    <input type="button" class="modalsubmit" id ="invitetogroupchat" value="Invite to Group Chat">
+    <div style="overflow: hidden; padding-right: .5em;">
+    <input type="text" class="modalinput" id="usernamegroupchatinviter" placeholder="Enter the username...">
+       </div><br>
+     </div>
+  </div>
+</div>
+
+
+        <!-- The GroupChat Permissions Modal -->
+<div id="groupChatPermissionModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span id="groupChatPermissionClose" class="close"> &times;</span>
+      <h4>Manage Permissions</h4>
+    </div>
+    <div class="modal-body">
+    <p id="gcpermissionoutput" class="modal-output"> </p>
+    <div style="overflow: hidden; padding-right: .5em;">
+       </div>
+  <div id="groupChatPermissionList">
+  <div id="gcOnlineMembers" onlinemembercount="0">
+        <label class="usernamelabel" style="color:#578c4f">ONLINE</label>
+  </div>
+  <div id="gcOfflineMembers" offlinemembercount="0">
+	<label class="usernamelabel" style="color:#d66464">OFFLINE</label>
+  </div>
+        <br></div>
+     </div>
+  </div>
+</div>
+
+
+<script>
+// Get the modal
+var friendModal = document.getElementById('friendModal');
+var gcModal = document.getElementById("groupChatModal");
+var gcInviterModal = document.getElementById("groupChatInviterModal");
+var gcPermissionModal = document.getElementById("groupChatPermissionModal");
+
+// Get the button that opens the modal
+var addFriendButton = document.getElementById("addfriend");
+var groupChatButton = document.getElementById("addgroupchat");
+var groupChatInviterButton = document.getElementById("invitetogroupchat");
+var groupChatPermissionButton = document.getElementById("gcPermissionTestButton");
+
+// Get the <span> element that closes the modal
+var friendSpan = document.getElementById("friendClose");
+var groupChatSpan = document.getElementById("groupChatClose");
+var groupChatInviterSpan = document.getElementById("groupChatInviterClose");
+var groupChatPermissionSpan = document.getElementById("groupChatPermissionClose");
+
+// When the user clicks the button, open the modal 
+addFriendButton.onclick = function() {
+  friendModal.style.display = "block";
+}
+groupChatButton.onclick = function() {
+  gcModal.style.display = "block";
+}
+groupChatInviterButton.onclick = function() {
+  gcInviterModal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+friendSpan.onclick = function() {
+  friendModal.style.display = "none";
+}
+groupChatSpan.onclick = function() {
+  gcModal.style.display = "none";
+}
+groupChatInviterSpan.onclick = function() {
+  gcInviterModal.style.display = "none";
+}
+groupChatPermissionSpan.onclick = function() {
+  gcPermissionModal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == friendModal) {
+    friendModal.style.display = "none";
+  }
+}
+
+window.onclick = function(event) {
+  if (event.target == gcModal) {
+    gcModal.style.display = "none";
+  }
+}
+
+window.onclick = function(event) {
+  if (event.target == gcInviterModal) {
+    gcInviterModal.style.display = "none";
+  }
+}
+
+window.onclick = function(event) {
+  if (event.target == gcPermissionModal) {
+    gcPermissionModal.style.display = "none";
+  }
+}
+
+var x, i, j, selElmnt, a, b, c;
+/*look for any elements with the class "custom-select":*/
+x = document.getElementsByClassName("custom-select");
+for (i = 0; i < x.length; i++) {
+  selElmnt = x[i].getElementsByTagName("select")[0];
+  /*for each element, create a new DIV that will act as the selected item:*/
+  a = document.createElement("DIV");
+  a.setAttribute("class", "select-selected");
+  a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
+  x[i].appendChild(a);
+  /*for each element, create a new DIV that will contain the option list:*/
+  b = document.createElement("DIV");
+  b.setAttribute("class", "select-items select-hide");
+  for (j = 1; j < selElmnt.length; j++) {
+    /*for each option in the original select element,
+    create a new DIV that will act as an option item:*/
+    c = document.createElement("DIV");
+    c.innerHTML = selElmnt.options[j].innerHTML;
+    c.addEventListener("click", function(e) {
+        /*when an item is clicked, update the original select box,
+        and the selected item:*/
+        var y, i, k, s, h;
+        s = this.parentNode.parentNode.getElementsByTagName("select")[0];
+        h = this.parentNode.previousSibling;
+        for (i = 0; i < s.length; i++) {
+          if (s.options[i].innerHTML == this.innerHTML) {
+            s.selectedIndex = i;
+            h.innerHTML = this.innerHTML;
+            y = this.parentNode.getElementsByClassName("same-as-selected");
+            for (k = 0; k < y.length; k++) {
+              y[k].removeAttribute("class");
+            }
+            this.setAttribute("class", "same-as-selected");
+            break;
+          }
+        }
+        h.click();
+    });
+    b.appendChild(c);
+  }
+  x[i].appendChild(b);
+  a.addEventListener("click", function(e) {
+      /*when the select box is clicked, close any other select boxes,
+      and open/close the current select box:*/
+      e.stopPropagation();
+      closeAllSelect(this);
+      this.nextSibling.classList.toggle("select-hide");
+      this.classList.toggle("select-arrow-active");
+    });
+}
+function closeAllSelect(elmnt) {
+  /*a function that will close all select boxes in the document,
+  except the current select box:*/
+  var x, y, i, arrNo = [];
+  x = document.getElementsByClassName("select-items");
+  y = document.getElementsByClassName("select-selected");
+  for (i = 0; i < y.length; i++) {
+    if (elmnt == y[i]) {
+      arrNo.push(i)
+    } else {
+      y[i].classList.remove("select-arrow-active");
+    }
+  }
+  for (i = 0; i < x.length; i++) {
+    if (arrNo.indexOf(i)) {
+      x[i].classList.add("select-hide");
+    }
+  }
+}
+/*if the user clicks anywhere outside the select box,
+then close all select boxes:*/
+document.addEventListener("click", closeAllSelect);
+</script>
+
+		</div>
+	
+	</body>
+	<script src="/chat.js"></script>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en class="login-register-bg"> 
+    <title>Valley</title>
+        <head>
+            <link rel="stylesheet" type="text/css" href="/stylesheet.css">
+            <link href="https://fonts.googleapis.com/css?family=Biryani:800" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.com/libraries/postgrest-client"></script>
+        </head>
+		<body>		
+           <div id="stage">
+                <div id="top">
+                    <img src="/valley1.png" class="valley1">
+                    <img src="/valley2.png" class="valley2">
+                    <img src="/user.png" class="user">
+                </div>
+                <div id="left" activechatid="null" isgroupchat="no"> 
+                </div>
+		<div id = "friends"></div>
+                <div id="right">
+		<div id="chat-window">
+                <div id="output"></div>
+                <div id="feedback"></div>
+                </div>
+		<div class="dropdown">
+  		<button id="myBtn" class="dropbtn">Friends</button>
+  		<div id="myDropdown" class="dropdown-content">
+ 	 	</div>
+		</div>
+
+		 	<h1 id="handle" myid="insert your hashed id here" > default</h1>
+			<script>
+			var id = window.location.search.substring(1);
+			var varibles = id.split("&");
+			for(var i = 0; i < varibles.length;i++)
+			{
+				var pair = varibles[i].split("=");
+				if(pair[0] == "id")
+				{
+					document.getElementById("handle").setAttribute("myid",(pair[1].toString()));
+					//document.getElementById("handle").setArrtibute("myid", "big chungus");
+				}
+			}
+			</script>				
+			<input type ='text' id = 'message'  placeholder = 'Type your message here...' required><br><br>
+			<button id="send">Send</button>               
+		</form>		
+		</div>
+               </div>
+		</body>
+		<script src="/chat.js"></script>
+</html>

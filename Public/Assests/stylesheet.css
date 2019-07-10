@@ -1,0 +1,474 @@
+select {
+	padding-left:10px;
+	max-width:280px;
+  	color:#424242;
+	background-color: white;
+}
+
+#inchat {
+	width: 80px;
+	height:100%;
+	z-index:1;
+	background-color:#303030;
+	position:absolute;
+	margin-top: 35px;
+	right:0;
+}
+html  {
+    font-family: sans-serif;
+	height:100%;
+    background-color: #424242;
+	background-size: 100% 100%;
+}
+
+.login-register-bg {
+	background-image:url("bg.png");
+}
+
+.leftscroll::-webkit-scrollbar-track {
+	background-color: #bababa;
+}
+
+.leftscroll::-webkit-scrollbar {
+	width: 10px;
+	background-color: #bababa;
+}
+
+.leftscroll::-webkit-scrollbar-thumb {
+	background-color: #424242;
+}
+
+.leftscroll::-webkit-scrollbar-thumb:hover {
+        background-color: #353535;
+}
+
+.rightscroll::-webkit-scrollbar-track {
+        background-color: #424242;
+}
+
+.rightscroll::-webkit-scrollbar {
+        width: 10px;
+        background-color: #424242;
+}
+
+.rightscroll::-webkit-scrollbar-thumb {
+        background-color: #898b8e;
+}
+
+.rightscroll::-webkit-scrollbar-thumb:hover {
+        background-color: #818387;
+}
+
+#view {
+    width: 30%;
+	min-height: 40%;
+    left: 0px;
+    background-color: #424242;
+    opacity: 20%;
+    padding: 25px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    border-radius: 4px;
+}
+p {
+    color: white;
+}
+.title {
+    font-family: 'Biryani', sans-serif;
+    margin-bottom: -20px;
+    color: white;
+}
+
+input {
+    caret-color: #8ab0e2;
+    color: #424242;
+}
+.usernamelogin::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #aaaaaa;
+  opacity: 1; /* Firefox */
+}
+.usernamelogin {
+  width: 85%;
+  caret-color: #8ab0e2;
+  color: #424242;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+nput[type=password]::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #aaaaaa;
+  opacity: 1; /* Firefox */
+}
+input[type=password], select {
+  width: 85%;
+  padding: 12px 20px;
+  color: #424242;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+
+input[type=submit] {
+  width: 85%;
+  background-color: #8ab0e2;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #6c8bb5;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+#stage {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+}
+
+#top {
+    width:98%;
+    brackground-color: #424242;
+    box-shadow: 0px 8px 10px -8px black;
+    height: 25px;
+    position: absolute;
+	z-index:2;
+    margin-left: 0;
+	padding: 5px;
+	border-radius: 4px;
+}
+
+.valleywordlogo {
+    height: 25px;
+    width: auto;
+    margin-left: 10px;
+    margin-top: 0px;
+    position: absolute;
+}
+
+.user {
+    right: 10px;
+    height: 25px;
+    width: 25px;
+    position: absolute;
+}
+
+.user .tooltip {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #bababa;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  right: 35px;
+  position: absolute;
+  z-index: 3;
+}
+
+.user:hover .tooltip {
+  visibility: visible;
+}
+
+.user .tooltip::after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  left: 100%; /* To the right of the tooltip */
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent black;
+}
+
+#left {
+    width: 19%;
+    height: 93%;
+    position: absolute;
+    box-shadow: 8px 0px 10px -8px black;
+    margin-left: 0;
+    margin-top: 35px;
+    background-color:#bababa;
+    border-radius: 4px;
+    z-index:1;
+}
+.leftlabel{
+  	border: none;
+  	color: #424242;
+	max-width: 100%;
+	font: bold 12px/30px Arial;
+	height:25px;
+	padding-left:10px;
+  	text-align: left;
+  	text-decoration: none;
+	position:relative;
+}
+.label {
+	display: inline-block;
+	width:100%;
+}
+.add {
+	cursor:pointer;
+	padding-top:5px;
+	padding-right:5px;
+        width:14px;
+        height:14px;
+	position:relative;
+	float:right;
+}
+.friend, .groupchat{
+        background-color:#bababa;
+	border: none;
+        color: #424242;
+        width: 100%;
+        font: bold 14px/20px Arial;
+        padding:10px;
+ 	padding-left:20px;
+        text-align: left;
+        text-decoration: none;
+        display: inline-block;
+	cursor:pointer;
+}
+.friend:hover {
+  background-color: #424242;
+  color:#bababa;
+}
+
+.groupchat:hover {
+ background-color: #424242;
+ color: white;
+}
+
+#right {
+    width:79%;
+    height: 93%;
+    position: absolute;
+    margin-left: 19%;
+    margin-top: 35px;
+    background-color: #424242;
+    border-radius: 4px;
+    z-index:0;
+}
+.nochat {
+    background-image: url("rightbg.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 500px 500px;
+}
+.chat {
+    background-image: none;
+}
+
+#output {
+	margin-top:0px;
+	margin-left:20px;
+   	padding:10px 10px 2px 10px;
+	background-color: #424242;
+	font: normal 12pt arial;
+	}
+
+.message {
+	border-left: 5px solid #8ab0e2; 
+	padding: 5px 0px 5px 10px; 
+	font-size:10pt;
+}
+.timestamp {
+	opacity:0.7; 
+	font-size:x-small;
+}
+
+#feedback {
+	margin-bottom: 5px;
+	bottom: 5px;
+	margin-left: 5%;
+}
+
+.messageinput {
+    margin-left: 20px;
+    width: 97%;
+    padding: 12px 10px;
+    bottom: 10px;    
+    display: inline-block;
+    border: 1px solid #ccc;
+    background-color: #969696;
+    border-radius: 4px;
+    position: absolute;
+    box-sizing: border-box;
+}
+
+.messageinput::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
+}
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 10; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #bababa;
+  margin-left:30%;
+  padding: 0;
+  border: 1px solid #888;
+  width: 40%;
+  height:auto;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: #424242;
+  color: white;
+}
+
+.modal-body {
+	padding: 2px 16px;
+	max-height:400px;
+  	overflow: auto;
+}
+
+.modalinput {
+  width: 350px;
+  caret-color: #8ab0e2;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.modalsubmit{
+  width: auto;
+  float:right;
+  background-color: #8ab0e2;
+  color: white;
+  padding: 13px 20px;
+  text-align:center;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.modalsubmit:hover {
+  background-color: #6c8bb5;
+}
+.requestlabel{
+        border: none;
+        color: #424242;
+        max-width: 100%;
+        font: bold 12px/20px Arial;
+        height:25px;
+        padding-left:0px;
+        text-align: left;
+        text-decoration: none;
+        position:relative;
+}
+.nofriends {
+	font:normal 12px/20px Arial;
+	color: #666666;
+}
+.usernamelabel{
+        border: none;
+        color: #424242;
+        width: 100%;
+	margin-left:10px;
+        font: bold 14px/10px Arial;
+        padding:5px 5px 5px 0px;;
+        text-align: left;
+        text-decoration: none;
+        display: inline-block;
+}
+.acceptButton {
+  width: 80px;
+  background-color: #8ab0e2;
+  color: white;
+  padding: 14px 20px;
+  text-align:center;
+  margin: 8px 0;
+  margin-left:10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size:8pt;
+}
+
+.acceptButton:hover {
+  background-color: #6c8bb5;
+
+}
+.denyButton {
+  width: 80px;
+  background-color: #d66464;
+  color: white;
+  padding: 14px 20px;
+  text-align:center;
+  margin: 8px 0;
+  margin-left:30px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size:8pt;
+}
+
+.denyButton:hover {
+  background-color: #aa4e4e;
+
+}
